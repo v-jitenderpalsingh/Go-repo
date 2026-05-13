@@ -6,7 +6,7 @@ jobs:
   test-386-cache:
     runs-on: windows-2025
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       
       - name: Setup Go with 386 architecture
         uses: actions/setup-go@v6
@@ -21,7 +21,7 @@ jobs:
   test-x64-cache:
     runs-on: windows-2025
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       
       - name: Setup Go with x64 architecture (default)
         uses: actions/setup-go@v6
