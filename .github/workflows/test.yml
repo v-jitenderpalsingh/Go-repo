@@ -1,0 +1,34 @@
+name: Reproduce setup-go 386 cache issue
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  test-386-cache:
+    runs-on: windows-2025
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Go with 386 architecture
+        uses: actions/setup-go@v6
+        with:
+          go-version: '1.22.12'
+          architecture: '386'
+          cache: true
+      
+      - name: Verify Go installation
+        run: go version
+
+  test-x64-cache:
+    runs-on: windows-2025
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Go with x64 architecture (default)
+        uses: actions/setup-go@v6
+        with:
+          go-version: '1.22.12'
+          architecture: 'x64'
+          cache: true
+      
+      - name: Verify Go installation
+        run: go version
