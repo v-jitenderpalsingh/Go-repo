@@ -1,23 +1,20 @@
-name: Workaround 3
-on: [pull_request, workflow_dispatch]
+name: Testing to find workaround
+on: [workflow_dispatch]
 
 jobs:
   test-386:
-    runs-on: windows-2025
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-go@v6
         with:
-          go-version: '1.22.12'
+          go-version: 1.26
           architecture: '386'
           cache: true
-          cache-dependency-path: |
-            go.mod-386
-            go.sum-386
       - run: go version
 
   test-x64:
-    runs-on: windows-2025
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-go@v6
