@@ -1,0 +1,30 @@
+name: Workaround 1 - Using Environment Variables.
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  test-386:
+    runs-on: windows-2025
+    env:
+      GOARCH_SUFFIX: '-386'
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-go@v6
+        with:
+          go-version: '1.22.12'
+          architecture: '386'
+          cache: true
+          cache-dependency-path: 'go.mod${{ env.GOARCH_SUFFIX }}'
+
+  test-x64:
+    runs-on: windows-2025
+    env:
+      GOARCH_SUFFIX: '-x64'
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-go@v6
+        with:
+          go-version: '1.22.12'
+          architecture: 'x64'
+          cache: true
+          cache-dependency-path: 'go.mod${{ env.GOARCH_SUFFIX }}'
