@@ -12,14 +12,3 @@ jobs:
           architecture: '386'
           cache: true
       - run: go version
-
-  test-x64:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-go@v6
-        with:
-          go-version: 1.26
-          architecture: 'x64'
-          cache: true
-      - run: go version
