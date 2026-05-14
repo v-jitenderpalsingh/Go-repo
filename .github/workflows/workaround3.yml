@@ -1,0 +1,31 @@
+name: Workaround 3
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  test-386:
+    runs-on: windows-2025
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v6
+        with:
+          go-version: '1.22.12'
+          architecture: '386'
+          cache: true
+          cache-dependency-path: |
+            go.mod-386
+            go.sum-386
+      - run: go version
+
+  test-x64:
+    runs-on: windows-2025
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v6
+        with:
+          go-version: '1.22.12'
+          architecture: 'x64'
+          cache: true
+          cache-dependency-path: |
+            go.mod-x64
+            go.sum-x64
+      - run: go version
