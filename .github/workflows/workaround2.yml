@@ -1,0 +1,26 @@
+name: Workaround 2 - Using Matrix Strategy.
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: windows-2025
+    strategy:
+      matrix:
+        architecture: ['386', 'x64']
+        goarch: ['386', 'amd64']
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Go ${{ matrix.architecture }}
+        uses: actions/setup-go@v6
+        with:
+          go-version: '1.22.12'
+          architecture: ${{ matrix.architecture }}
+          cache: true
+      
+      - name: Test Go ${{ matrix.architecture }}
+        env:
+          GOARCH: ${{ matrix.goarch }}
+        run: go version

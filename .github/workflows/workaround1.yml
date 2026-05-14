@@ -1,6 +1,6 @@
 name: Workaround 1 - Using Environment Variables.
 
-on: [push, pull_request, workflow_dispatch]
+on: [pull_request, workflow_dispatch]
 
 jobs:
   test-386:
