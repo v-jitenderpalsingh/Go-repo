@@ -1,4 +1,4 @@
-name: Workaround 3
+name: Workaround 3 - Use Custom Cache Dependency Path
 on: [pull_request, workflow_dispatch]
 
 jobs:

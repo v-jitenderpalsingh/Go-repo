@@ -1,13 +1,13 @@
 name: Workaround 2 - Using Matrix Strategy.
 
-on: [pull_request, workflow_dispatch]
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
   test:
     runs-on: windows-2025
     strategy:
       matrix:
-        architecture: ['386']
+        architecture: ['386', 'amd64', 'x64']
         goarch: ['386', 'amd64']
     
     steps:
